@@ -1,0 +1,3 @@
+allow adbd_tradeinmode servicemanager:binder call;
+allow adbd_tradeinmode adbroot_service:service_manager find;
+allow adbd_tradeinmode adbroot:binder call;

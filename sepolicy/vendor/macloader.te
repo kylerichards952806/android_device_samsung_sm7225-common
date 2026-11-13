@@ -38,3 +38,4 @@ allow macloader sysfs_wifi:file r_file_perms;
 
 # Don't set ro.vendor.wifi.sap.interface
 dontaudit macloader vendor_default_prop:property_service set;
+dontaudit macloader default_prop:property_service set;

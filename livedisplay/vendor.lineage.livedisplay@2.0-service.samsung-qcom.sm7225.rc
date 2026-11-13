@@ -5,3 +5,4 @@ service vendor.livedisplay-hal-2-0-samsung-qcom.sm7225 /vendor/bin/hw/vendor.lin
     class late_start
     user system
     group system
+    seclabel u:r:hal_lineage_livedisplay_sysfs:s0

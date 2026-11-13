@@ -11,6 +11,7 @@ type sysfs_display, fs_type, sysfs_type;
 type biometrics_vendor_data_file, file_type, data_file_type;
 type conn_vendor_data_file, file_type, data_file_type;
 type radio_vendor_data_file, file_type, data_file_type;
+type gnss_vendor_data_file, file_type, data_file_type;
 type keymaster_vendor_data_file, file_type, data_file_type;
 
 # EFS types
@@ -22,6 +23,8 @@ type camera_efs_file, file_type;
 type carrier_efs_file, file_type;
 type cpk_efs_file, file_type;
 type dsms_efs_file, file_type;
+type prov_efs_file, file_type;
+type dak_efs_file, file_type;
 type imei_efs_file, file_type;
 type knoxai_efs_file, file_type;
 type kpm_efs_file, file_type;
@@ -38,7 +41,6 @@ type sysfs_sec_fastcharge, fs_type, sysfs_type;
 type sysfs_sec_fastcharge_writable, fs_type, sysfs_type;
 
 # Memory
-type sysfs_oem_memory, fs_type, sysfs_type;
 
 # Misc
 type misc_file, fs_type;
@@ -74,6 +76,7 @@ type sysfs_backlight_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_camera_writable, sysfs_type, r_fs_type, fs_type;
 type sysfs_battery_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_lcd_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_mdnie_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_power_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_sec_switch_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_touchscreen_writable, sysfs_type, rw_fs_type, fs_type;
@@ -81,3 +84,6 @@ type sysfs_wifi_writable, sysfs_type, rw_fs_type, fs_type;
 
 # Keymaster
 type vendor_keymaster_data_file, file_type, data_file_type;
+
+type wifi_efs_file, file_type;
+

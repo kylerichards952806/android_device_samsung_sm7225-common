@@ -17,6 +17,15 @@ allow hal_health_default efs_file:dir search;
 allow hal_health_default hal_thermal_samsung_hwservice:hwservice_manager find;
 binder_call(hal_health_default, hal_thermal_default)
 
+# Health HAL uses a wake alarm and uevent/qrtr sockets for battery events.
+allow hal_health_default self:capability2 wake_alarm;
+allow hal_health_default self:netlink_kobject_uevent_socket { create bind read write getattr };
+allow hal_health_default self:qipcrtr_socket { create bind read write getattr };
+
 # SysFS Wakeup
 allow hal_health_default sysfs_wakeup:file r_file_perms;
 allow hal_health_default sysfs_wakeup:dir r_dir_perms;
+# health HAL sysfs reads
+allow hal_health_default sysfs:file read;
+
+allow hal_health_default sysfs:file { open read };

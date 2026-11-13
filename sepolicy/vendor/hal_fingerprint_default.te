@@ -30,3 +30,10 @@ allow hal_fingerprint_default sysfs_battery:file { open read };
 
 # /dev/uinput
 allow hal_fingerprint_default uhid_device:chr_file rw_file_perms;
+
+# /sys/devices/virtual/lcd/panel/cell_id
+allow hal_fingerprint_default sysfs_lcd_writable:dir r_dir_perms;
+allow hal_fingerprint_default sysfs_lcd_writable:file r_file_perms;
+allow hal_fingerprint_default ion_device:chr_file { open read write map ioctl };
+allow hal_fingerprint_default tee_device:chr_file ioctl;
+allow hal_fingerprint_default fp_sensor_device:chr_file ioctl;

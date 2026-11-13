@@ -8,3 +8,13 @@ allow system_suspend sysfs_wakeup:dir { open read };
 allow system_suspend sysfs_wakeup:file { getattr open read };
 allow system_suspend sysfs_battery:dir { open read };
 allow system_suspend sysfs_battery:file { getattr open read };
+
+# Samsung's health HAL exchanges binder references with the suspend service.
+hal_client_domain(system_suspend, hal_health)
+# init access to the allocator HAL service
+allow init hal_allocator_default:binder call;
+
+# storaged sysfs access
+dontaudit storaged sysfs:file { open read getattr };
+
+# health HAL sysfs reads

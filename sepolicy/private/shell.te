@@ -1,0 +1,2 @@
+# getprop enumerates /dev/__properties__ entries, including this metadata file.
+allow shell aac_drc_prop:file { getattr open read map };

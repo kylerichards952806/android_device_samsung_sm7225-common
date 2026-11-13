@@ -1,0 +1,9 @@
+cc_prebuilt_library_shared {
+    name: "libshim_samsungaudioparams",
+    owner: "samsung",
+    srcs: ["libshim_samsungaudioparams.so"],
+    strip: { none: true },
+    check_elf_files: false,
+    vendor: true,
+    compile_multilib: "32",
+}
