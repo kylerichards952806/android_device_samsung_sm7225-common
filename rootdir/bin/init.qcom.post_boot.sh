@@ -611,14 +611,17 @@ function configure_zram_parameters() {
         let zRamSizeMB=4096
     fi
 
-    # Low-RAM devices (including the 4GB A42 5G) benefit from lz4: it compresses
-    # roughly twice as fast as lzo-rle, which cuts CPU stalls when zram is under
-    # pressure during scrolling. Larger variants keep lzo-rle for its better ratio.
-    if [ "$low_ram" == "true" ] || [ $RamSizeGB -le 4 ]; then
-        echo lz4 > /sys/block/zram0/comp_algorithm
-    fi
-
     if [ -f /sys/block/zram0/disksize ]; then
+        # init brings zram up before this script runs, and the compressor can
+        # only be changed while the device is idle, so tear it down first.
+        # lz4 compresses roughly twice as fast as lzo-rle, which cuts the CPU
+        # stalls 4 GB models hit under memory pressure. Larger variants keep
+        # lzo-rle for its better ratio.
+        if [ "$low_ram" == "true" ] || [ $RamSizeGB -le 4 ]; then
+            swapoff /dev/block/zram0 2>/dev/null
+            echo 1 > /sys/block/zram0/reset
+            echo lz4 > /sys/block/zram0/comp_algorithm
+        fi
         if [ -f /sys/block/zram0/use_dedup ]; then
             echo 1 > /sys/block/zram0/use_dedup
         fi
