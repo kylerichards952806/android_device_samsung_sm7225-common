@@ -27,6 +27,27 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+# fs_mgr initialises zram from fstab.ramplus during mount_all, before this
+# script runs, and the compressor can only be changed while the device is idle.
+# Reset it once and rebuild the swap so 4 GB models get lz4, which compresses
+# about twice as fast as lzo-rle and cuts the stalls seen under memory
+# pressure. Larger variants keep lzo-rle for its better ratio.
+if [ -f /sys/block/zram0/comp_algorithm ]; then
+    zram_size=$(cat /sys/block/zram0/disksize 2>/dev/null)
+    if [ "${zram_size:-0}" != "0" ] && ! grep -q "\[lz4\]" /sys/block/zram0/comp_algorithm; then
+        mem_total_kb=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
+        ram_gb=$(( (mem_total_kb / 1048576) + 1 ))
+        if [ "$(getprop ro.config.low_ram)" == "true" ] || [ $ram_gb -le 4 ]; then
+            swapoff /dev/block/zram0 2>/dev/null
+            echo 1 > /sys/block/zram0/reset
+            echo lz4 > /sys/block/zram0/comp_algorithm
+            echo "$zram_size" > /sys/block/zram0/disksize
+            mkswap /dev/block/zram0 >/dev/null 2>&1
+            swapon /dev/block/zram0 -p 32758
+        fi
+    fi
+fi
+
 function 8953_sched_dcvs_eas()
 {
     #governor settings
@@ -612,16 +633,6 @@ function configure_zram_parameters() {
     fi
 
     if [ -f /sys/block/zram0/disksize ]; then
-        # init brings zram up before this script runs, and the compressor can
-        # only be changed while the device is idle, so tear it down first.
-        # lz4 compresses roughly twice as fast as lzo-rle, which cuts the CPU
-        # stalls 4 GB models hit under memory pressure. Larger variants keep
-        # lzo-rle for its better ratio.
-        if [ "$low_ram" == "true" ] || [ $RamSizeGB -le 4 ]; then
-            swapoff /dev/block/zram0 2>/dev/null
-            echo 1 > /sys/block/zram0/reset
-            echo lz4 > /sys/block/zram0/comp_algorithm
-        fi
         if [ -f /sys/block/zram0/use_dedup ]; then
             echo 1 > /sys/block/zram0/use_dedup
         fi
