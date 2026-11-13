@@ -9,7 +9,7 @@
 ## Device trees
 
 * sm7225-common: added `seclabel` entries for the Samsung fingerprint, LiveDisplay and vibrator HAL services, so each one starts in its own domain instead of falling back to `init`.
-* sm7225-common: added the supporting sepolicy for those HALs, covering audio, bluetooth, camera, fingerprint, keymaster, health, power, sensors, fastbootd, fsck, storage and system suspend.
+* sm7225-common: added the supporting sepolicy for those HALs, covering audio, bluetooth, camera, fingerprint, keymaster, health, power, sensors, fastbootd, fsck and storage.
 * sm7225-common: removed the stale `lights-service.example` entry from the vendor `file_contexts`, which produced duplicate labels for the light HAL and broke image builds.
 * sm7225-common: dropped the unused SamsungCallManager package from the product.
 * sm7225-common: AOSP Messaging is now built in, so the platform ships a default SMS app instead of only the MMS transport.

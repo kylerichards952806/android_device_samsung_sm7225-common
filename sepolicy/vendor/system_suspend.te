@@ -1,2 +1,0 @@
-# /sys/power suspend statistics
-allow system_suspend sysfs:file r_file_perms;
