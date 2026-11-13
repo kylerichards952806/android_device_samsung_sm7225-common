@@ -12,3 +12,6 @@ allow hal_lineage_livedisplay_sysfs sysfs_mdnie_writable:file { read write open 
 allow hal_lineage_livedisplay_sysfs vndbinder_device:chr_file { open read write map ioctl };
 allow hal_lineage_livedisplay_sysfs vendor_sysfs_graphics:file { open write };
 allow hal_lineage_livedisplay_sysfs hal_lineage_livedisplay_service:service_manager add;
+# Light HAL: HBM / panel sysfs nodes
+allow hal_light_default sysfs_lcd_writable:dir { search getattr open read };
+allow hal_light_default sysfs_lcd_writable:file { getattr open read write };

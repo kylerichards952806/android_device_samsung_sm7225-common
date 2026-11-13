@@ -186,8 +186,12 @@ ndk::ScopedAStatus Vibrator::alwaysOnDisable(int32_t /*id*/) {
     return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
 }
 
-ndk::ScopedAStatus Vibrator::getResonantFrequency(float* /*_aidl_return*/) {
-    return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
+ndk::ScopedAStatus Vibrator::getResonantFrequency(float* _aidl_return) {
+    // Report a sane resonant frequency instead of UNSUPPORTED, otherwise the
+    // framework builds a VibratorInfo with NaN and logs
+    // "Invalid frequency profile received from HAL".
+    *_aidl_return = 170.0f;
+    return ndk::ScopedAStatus::ok();
 }
 
 ndk::ScopedAStatus Vibrator::getQFactor(float* /*_aidl_return*/) {

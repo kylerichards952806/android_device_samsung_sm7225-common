@@ -4,6 +4,7 @@
 
 * SELinux now runs fully enforcing on the sm7225 platform, with every denial raised during bring-up resolved in the device trees.
 * Builds are signed with private keys, replacing the shared AOSP test keys and closing the security risk that came with them.
+* Lockscreen PINs now survive a reboot, and brightness, power hints, thermal reporting and charging all behave as they should.
 
 ## Device trees
 
@@ -12,6 +13,14 @@
 * sm7225-common: removed the stale `lights-service.example` entry from the vendor `file_contexts`, which produced duplicate labels for the light HAL and broke image builds.
 * sm7225-common: dropped the unused SamsungCallManager package from the product.
 * sm7225-common: AOSP Messaging is now built in, so the platform ships a default SMS app instead of only the MMS transport.
+* sm7225-common: the lockscreen PIN is now accepted after a reboot. The security service could not read its stored credential, so it enrolled a new key on every boot and every PIN became invalid.
+* sm7225-common: fixed the light HAL not being allowed to write the HBM and panel nodes, which could leave brightness and high brightness mode changes unapplied.
+* sm7225-common: fixed the power hints pointing at the wrong frequency nodes. Every write failed, so touch and app launch boosts never applied. This is the biggest scrolling improvement in this build.
+* sm7225-common: charger and OTG type detection is fixed, the health HAL can read those nodes again.
+* sm7225-common: added the QTI thermal HAL, so the framework can read temperatures and apply thermal limits.
+* sm7225-common: the vibrator HAL now reports a real resonant frequency instead of an unsupported value, which removes the invalid frequency profile warning.
+* sm7225-common: 4 GB models now use lz4 for zram, so memory compression costs less CPU under pressure. 6 GB and 8 GB models keep lzo-rle for its better ratio.
+* sm7225-common: cleaned up the remaining SELinux denials covering the security service, light and power HAL sysfs writes, GNSS, suspend statistics and early init.
 
 ## ROM
 

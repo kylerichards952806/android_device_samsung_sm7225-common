@@ -93,3 +93,9 @@ genfscon sysfs /wifi/memdump                                                    
 # /sys/devices/platform/soc/988000.i2c/i2c-23/23-0020/wakeup/wakeup36
 # system_suspend reads the wakeup source name during suspend.
 genfscon sysfs /devices/platform/soc/988000.i2c/i2c-23/23-0020/wakeup/                                u:object_r:sysfs_wakeup:s0
+
+# Battery/charger nodes on i2c-22 (sm5714)
+genfscon sysfs /devices/platform/soc/984000.i2c/i2c-22/22-0049/  u:object_r:sysfs_battery:s0
+
+# Thermal zones
+genfscon sysfs /devices/virtual/thermal/  u:object_r:sysfs_thermal:s0

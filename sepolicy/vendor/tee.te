@@ -5,3 +5,8 @@ allow tee sec_efs_file:dir create_dir_perms;
 allow tee sec_efs_file:file create_file_perms;
 
 allow tee vendor_qseecomd_prop:property_service set;
+
+# TEE gatekeeper needs to read/write its enrolled credential blob in /data/vendor/gatekeeper.
+# Without this, gatekeeper re-enrols a new key on every boot and every PIN is rejected after reboot.
+allow tee gatekeeper_vendor_data_file:dir create_dir_perms;
+allow tee gatekeeper_vendor_data_file:file create_file_perms;

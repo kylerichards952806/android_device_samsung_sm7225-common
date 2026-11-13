@@ -165,40 +165,40 @@
       "ResetOnInit": true
     },
     {
-        "Name": "TouchscreenEnable",
-        "Path": "/sys/class/sec/tsp/input/enabled",
-        "Values": [
-            "1",
-            "0"
-        ],
-        "ResetOnInit": true
+      "Name": "TouchscreenEnable",
+      "Path": "/sys/class/sec/tsp/input/enabled",
+      "Values": [
+        "1",
+        "0"
+      ],
+      "ResetOnInit": true
     },
     {
       "Name": "LightSensorEnable",
       "Path": "/sys/class/sensors/light_sensor/lcd_onoff",
       "Values": [
-          "1",
-          "0"
+        "1",
+        "0"
       ],
       "ResetOnInit": true
     },
     {
-        "Name": "DoubleTapToWakeEnable",
-        "Path": "/sys/class/sec/tsp/cmd",
-        "Values": [
-            "aot_enable,0",
-            "aot_enable,1"
-        ],
-        "DefaultIndex": 0
+      "Name": "DoubleTapToWakeEnable",
+      "Path": "/sys/class/sec/tsp/cmd",
+      "Values": [
+        "aot_enable,0",
+        "aot_enable,1"
+      ],
+      "DefaultIndex": 0
     },
     {
-        "Name": "BatteryLcdStatus",
-        "Path": "/sys/class/power_supply/battery/lcd",
-        "Values": [
-            "1",
-            "0"
-        ],
-        "ResetOnInit": true
+      "Name": "BatteryLcdStatus",
+      "Path": "/sys/class/power_supply/battery/lcd",
+      "Values": [
+        "1",
+        "0"
+      ],
+      "ResetOnInit": true
     },
     {
       "Name": "CPUBWMinFreq",
@@ -222,7 +222,7 @@
     },
     {
       "Name": "L3LittleClusterMinFreq",
-      "Path": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu0-cpu-l3-lat/min_freq",
+      "Path": "/sys/class/devfreq/18321000.qcom,devfreq-l3:qcom,cpu0-cpu-l3-lat/min_freq",
       "Values": [
         "1612800000",
         "300000000"
@@ -231,16 +231,7 @@
     },
     {
       "Name": "L3BigClusterMinFreq",
-      "Path": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu4-cpu-l3-lat/min_freq",
-      "Values": [
-        "1612800000",
-        "300000000"
-      ],
-      "ResetOnInit": true
-    },
-    {
-      "Name": "L3BigPlusClusterMinFreq",
-      "Path": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu7-cpu-l3-lat/min_freq",
+      "Path": "/sys/class/devfreq/18321000.qcom,devfreq-l3:qcom,cpu6-cpu-l3-lat/min_freq",
       "Values": [
         "1612800000",
         "300000000"
@@ -417,12 +408,6 @@
     {
       "PowerHint": "LAUNCH",
       "Node": "L3BigClusterMinFreq",
-      "Duration": 3000,
-      "Value": "1612800000"
-    },
-    {
-      "PowerHint": "LAUNCH",
-      "Node": "L3BigPlusClusterMinFreq",
       "Duration": 3000,
       "Value": "1612800000"
     },

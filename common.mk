@@ -517,3 +517,6 @@ $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/samsung/fingerprint:
 # Inherit proprietary blobs
 $(call inherit-product, vendor/samsung/sm7225-common/sm7225-common-vendor.mk)
 
+
+# Thermal HAL (QTI AIDL), required by the framework thermal service
+PRODUCT_PACKAGES +=     android.hardware.thermal-service.qti
