@@ -27,6 +27,18 @@
 * lineage-sdk: LiveDisplay no longer blocks `system_server` during boot. `LineageHardwareManager` uses non-blocking service lookups instead of waiting indefinitely for a service that never registers, which previously left the device on a black screen after a data wipe.
 * SystemUI: the biometric prompt message is no longer drawn underneath the navigation bar on devices whose under-display sensor sits close to the bottom edge of the panel.
 
+## Upstream (LineageOS 24.0)
+
+* Sources synced to LineageOS 24.0 as of 9 November 2026, with the November 2026 Android security patch (`2026-11-01`).
+* SystemUI: the profiles tile requests `MODIFY_PROFILES`, so toggling profiles works instead of being silently denied.
+* Settings: turning the Bluetooth A2DP and LE audio offload toggles off and choosing reboot now applies the change; the confirmation was being dropped, so the phone only rebooted.
+* Contacts: exporting to an existing vCard file truncates it first, so stale contacts from a previous export can no longer be recovered from the file.
+* lineage-sdk: profiles use type-checked parcel reads.
+* Translation imports for Dialer, Messaging, Jelly, Desk Clock and Updater.
+* Security fixes in the media codec (stack buffer overflow in `LWOmxNode::getParameter`) and the input dispatcher (out-of-bounds read and use-after-free in `flushSensor`).
+
+No upstream platform commits landed between the 13/11 and 14/11 builds.
+
 ## Kernel
 
 * No kernel changes in this release.
