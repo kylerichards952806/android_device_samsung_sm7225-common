@@ -39,3 +39,8 @@ vendor.sys.qseecomd.                             u:object_r:vendor_qseecomd_prop
 ro.vendor.wifi.                                  u:object_r:vendor_wifi_prop:s0
 vendor.wifi.                                     u:object_r:vendor_wifi_prop:s0
 vendor.qcom.wifi.                                u:object_r:vendor_wifi_prop:s0
+
+# Power HAL state published by libperfmgr
+vendor.powerhal.state                           u:object_r:vendor_power_prop:s0
+vendor.powerhal.rendering                       u:object_r:vendor_power_prop:s0
+vendor.powerhal.audio                           u:object_r:vendor_power_prop:s0
