@@ -15,11 +15,11 @@
 * sm7225-common: AOSP Messaging is now built in, so the platform ships a default SMS app instead of only the MMS transport.
 * sm7225-common: the lockscreen PIN is now accepted after a reboot. The security service could not read its stored credential, so it enrolled a new key on every boot and every PIN became invalid.
 * sm7225-common: fixed the light HAL not being allowed to write the HBM and panel nodes, which could leave brightness and high brightness mode changes unapplied.
-* sm7225-common: fixed the power hints pointing at the wrong frequency nodes. Every write failed, so touch and app launch boosts never applied. This is the biggest scrolling improvement in this build.
+* sm7225-common: fixed the power hints pointing at the wrong frequency nodes. Every write failed, so touch and app launch boosts never applied. The big cluster hints now also target the A77 cores instead of a little core, so launch boosts actually reach the performance cluster. This is the biggest scrolling improvement in this build.
 * sm7225-common: charger and OTG type detection is fixed, the health HAL can read those nodes again.
 * sm7225-common: added the QTI thermal HAL, so the framework can read temperatures and apply thermal limits.
 * sm7225-common: the vibrator HAL now reports a real resonant frequency instead of an unsupported value, which removes the invalid frequency profile warning.
-* sm7225-common: 4 GB models now use lz4 for zram, so memory compression costs less CPU under pressure.
+* sm7225-common: zram now uses lz4 on every RAM variant, so memory compression costs less CPU under pressure.
 * sm7225-common: cleaned up the remaining SELinux denials covering the security service, light and power HAL sysfs writes, GNSS, suspend statistics and early init.
 
 ## ROM
