@@ -19,7 +19,7 @@
 * sm7225-common: charger and OTG type detection is fixed, the health HAL can read those nodes again.
 * sm7225-common: added the QTI thermal HAL, so the framework can read temperatures and apply thermal limits.
 * sm7225-common: the vibrator HAL now reports a real resonant frequency instead of an unsupported value, which removes the invalid frequency profile warning.
-* sm7225-common: 4 GB models now use lz4 for zram, so memory compression costs less CPU under pressure. 6 GB and 8 GB models keep lzo-rle for its better ratio.
+* sm7225-common: 4 GB models now use lz4 for zram, so memory compression costs less CPU under pressure.
 * sm7225-common: cleaned up the remaining SELinux denials covering the security service, light and power HAL sysfs writes, GNSS, suspend statistics and early init.
 
 ## ROM

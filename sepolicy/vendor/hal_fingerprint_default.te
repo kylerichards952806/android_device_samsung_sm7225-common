@@ -37,3 +37,6 @@ allow hal_fingerprint_default sysfs_lcd_writable:file r_file_perms;
 allow hal_fingerprint_default ion_device:chr_file { open read write map ioctl };
 allow hal_fingerprint_default tee_device:chr_file ioctl;
 allow hal_fingerprint_default fp_sensor_device:chr_file ioctl;
+
+# UDFPS brightness mask
+allow hal_fingerprint_default sysfs_lcd_writable:file write;

@@ -52,3 +52,6 @@ dontaudit hal_power_default self:capability dac_override;
 
 # libperfmgr toggles the light sensor LCD state node
 allow hal_power_default sysfs_sensors:file { getattr open write };
+
+# Power HAL publishes its rendering state
+allow hal_power_default vendor_default_prop:property_service set;

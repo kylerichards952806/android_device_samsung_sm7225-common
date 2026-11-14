@@ -90,6 +90,10 @@ on init
 
 on early-fs
     start vold
+    # fs_mgr initialises zram from fstab.ramplus during mount_all, and the
+    # compressor can only be chosen while the device is idle. Set it here, before
+    # the disk size is applied, so lz4 is used from the first page onwards.
+    write /sys/block/zram0/comp_algorithm lz4
 
 on fs
     start hwservicemanager
