@@ -99,3 +99,6 @@ genfscon sysfs /devices/platform/soc/984000.i2c/i2c-22/22-0049/  u:object_r:sysf
 
 # Thermal zones
 genfscon sysfs /devices/virtual/thermal/  u:object_r:sysfs_thermal:s0
+
+# Hall IC wakeup source (system_suspend reads name/active_count).
+genfscon sysfs /devices/platform/samsung_mobile_device/samsung_mobile_device:hall_ic/wakeup/ u:object_r:sysfs_wakeup:s0
