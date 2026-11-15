@@ -24,6 +24,7 @@
 * sm7225-common: cleaned up the remaining SELinux denials covering the security service, light and power HAL sysfs writes, GNSS, suspend statistics and early init.
 * sm7225-common: allowed the audio HAL to read the TAS25xx calibration files in `/efs/tas25xx`, so the speaker protection and thermal calibration load instead of being skipped.
 * sm7225-common: labelled the hall IC wakeup source, closing the remaining suspend-related denial.
+* sm7225-common: added a narrow dontaudit for KSUNext's benign  probe; the test path stays inaccessible to untrusted apps.
 
 ## ROM
 
