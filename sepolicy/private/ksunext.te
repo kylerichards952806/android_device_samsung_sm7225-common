@@ -1,4 +1,0 @@
-# KSUNext (com.rifsxd.ksunext) probes /data/local/tmp/tests before it asks
-# for root. That path is shell test data and is intentionally inaccessible to
-# untrusted apps; suppress the benign audit denial without granting access.
-dontaudit untrusted_app shell_test_data_file:dir search;
