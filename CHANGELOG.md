@@ -5,6 +5,7 @@
 * SELinux now runs fully enforcing on the sm7225 platform, with every denial raised during bring-up resolved in the device trees.
 * Builds are signed with private keys, replacing the shared AOSP test keys and closing the security risk that came with them.
 * Lockscreen PINs now survive a reboot, and brightness, power hints, thermal reporting and charging all behave as they should.
+* The speaker loads its TAS25xx factory calibration again, and brightness recovers after the under-display fingerprint reader's high-brightness mode instead of staying stuck.
 
 ## Device trees
 
@@ -21,6 +22,8 @@
 * sm7225-common: the vibrator HAL now reports a real resonant frequency instead of an unsupported value, which removes the invalid frequency profile warning.
 * sm7225-common: zram now uses lz4 on every RAM variant, so memory compression costs less CPU under pressure.
 * sm7225-common: cleaned up the remaining SELinux denials covering the security service, light and power HAL sysfs writes, GNSS, suspend statistics and early init.
+* sm7225-common: allowed the audio HAL to read the TAS25xx calibration files in `/efs/tas25xx`, so the speaker protection and thermal calibration load instead of being skipped.
+* sm7225-common: labelled the hall IC wakeup source, closing the remaining suspend-related denial.
 
 ## ROM
 
@@ -37,11 +40,11 @@
 * Translation imports for Dialer, Messaging, Jelly, Desk Clock and Updater.
 * Security fixes in the media codec (stack buffer overflow in `LWOmxNode::getParameter`) and the input dispatcher (out-of-bounds read and use-after-free in `flushSensor`).
 
-No upstream platform commits landed between the 13/11 and 14/11 builds.
+No upstream platform commits landed between the 14/11 and 15/11 builds.
 
 ## Kernel
 
-* No kernel changes in this release.
+* display: added a five-second watchdog for the UDFPS finger-mask HBM state. If the mask is left on after an unlock, the watchdog clears it so normal brightness updates resume instead of the panel staying at the fingerprint brightness level.
 
 ## Build and signing
 
