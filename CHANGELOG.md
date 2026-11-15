@@ -9,6 +9,7 @@
 
 ## Device trees
 
+* sm7225-common: enabled Always On Display for the A42 panel and turned screen-off fingerprint unlock on by default, so the optical UDFPS reader can authenticate while the display is off.
 * sm7225-common: added `seclabel` entries for the Samsung fingerprint, LiveDisplay and vibrator HAL services, so each one starts in its own domain instead of falling back to `init`.
 * sm7225-common: added the supporting sepolicy for those HALs, covering audio, bluetooth, camera, fingerprint, keymaster, health, power, sensors, fastbootd, fsck and storage.
 * sm7225-common: removed the stale `lights-service.example` entry from the vendor `file_contexts`, which produced duplicate labels for the light HAL and broke image builds.
