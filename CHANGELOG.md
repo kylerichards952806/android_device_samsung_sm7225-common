@@ -27,6 +27,7 @@
 * sm7225-common: added a narrow dontaudit for KSUNext's benign /data/local/tmp/tests probe; the test path stays inaccessible to untrusted apps.
 
 ## ROM
+* a42xq: disabled notification-shade blur with persist.sysui.disableBlur=true; QS animation jank fell from 5.32% to 1.1–1.2% and median frame time from 18 ms to 10–11 ms.
 
 * lineage-sdk: LiveDisplay no longer blocks `system_server` during boot. `LineageHardwareManager` uses non-blocking service lookups instead of waiting indefinitely for a service that never registers, which previously left the device on a black screen after a data wipe.
 * SystemUI: the biometric prompt message is no longer drawn underneath the navigation bar on devices whose under-display sensor sits close to the bottom edge of the panel.
