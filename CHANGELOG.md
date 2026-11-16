@@ -1,3 +1,17 @@
+# Infinity-X 4.2 — Qualcomm sm7225 platform
+
+## Infinity-X 4.2 — 16 November 2026
+
+### Boot
+
+* Removed the `vendor.lineage.livedisplay` AIDL HAL declaration from `configs/manifest.xml`. The declaration had no backing service: the only livedisplay daemon in the tree is the HIDL 2.0 one, and nothing ever registers `IAdaptiveBacklight`, `IDisplayColorCalibration`, `IDisplayModes` or `ISunlightEnhancement`. The blocking `waitForDeclaredService()` call in `LineageHardwareManager` wedged the `android.display` thread inside `finishBooting()`, which kept user 0 in `BOOTING`, hid the launcher and made the Watchdog restart `system_server` every ~66 seconds.
+
+### SELinux
+
+* `crash_dump` can ptrace `vold` on `user` builds, so vold crashes produce usable tombstones.
+* `system_server` can read `binderfs_logs_transactions` on `user` builds, so ANR and watchdog reports include binder transactions.
+* Silenced the SystemUI read of `ro.usb.uvc.enabled` with a `dontaudit`; the `appdomain` neverallow still denies it by design.
+
 # LineageOS 24.0 — Qualcomm sm7225 platform
 
 ## Highlights
