@@ -48,6 +48,13 @@ if [ -f /sys/block/zram0/comp_algorithm ]; then
     fi
 fi
 
+# zram is the only swap device, so point reclaim at it and make fault-around
+# read a single 4 KB page instead of a 128 KB cluster. Low risk on every RAM
+# variant and the biggest single win on the 4 GB models.
+echo 100 > /proc/sys/vm/swappiness
+echo 0 > /proc/sys/vm/page-cluster
+echo 60 > /proc/sys/vm/vfs_cache_pressure
+
 function 8953_sched_dcvs_eas()
 {
     #governor settings
