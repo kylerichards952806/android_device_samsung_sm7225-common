@@ -13,3 +13,9 @@ allow hal_audio_default audio_efs_file:dir search;
 
 # TAS25xx calibration data lives in /efs/tas25xx and is read by the audio HAL.
 allow hal_audio_default audio_efs_file:file { getattr open read };
+
+# /sys/class/audio/earjack/state - jack insertion is what tells the
+# Samsung audio HAL to route to the 3.5 mm jack. The type was labelled
+# but never granted, so every read was denied and the jack was dead.
+allow hal_audio_default sysfs_audio_writable:file r_file_perms;
+allow hal_audio_default sysfs:dir search;
