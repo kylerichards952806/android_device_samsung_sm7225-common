@@ -1,0 +1,8 @@
+# dex2oat may read priv-app DE profiles and artefacts (AOSP dex2oat.te already allows
+# privapp_data_file:file read/write) but AOSP never grants traversal of the directory
+# itself. dexopt of com.google.android.gms therefore logs
+#   avc: denied { search } for comm="dex2oat" name="com.google.android.gms"
+#   tcontext=u:object_r:privapp_data_file:s0 tclass=dir
+# and falls back to a profile-less compile. Grant traversal and getattr only; `open`
+# is excluded because the AOSP neverallow is checked against the dir class too.
+allow dex2oat privapp_data_file:dir { getattr search };
