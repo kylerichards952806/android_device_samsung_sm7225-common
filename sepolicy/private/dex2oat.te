@@ -1,8 +1,8 @@
-# dex2oat may read priv-app DE profiles and artefacts (AOSP dex2oat.te already allows
-# privapp_data_file:file read/write) but AOSP never grants traversal of the directory
-# itself. dexopt of com.google.android.gms therefore logs
-#   avc: denied { search } for comm="dex2oat" name="com.google.android.gms"
-#   tcontext=u:object_r:privapp_data_file:s0 tclass=dir
-# and falls back to a profile-less compile. Grant traversal and getattr only; `open`
-# is excluded because the AOSP neverallow is checked against the dir class too.
-allow dex2oat privapp_data_file:dir { getattr search };
+# dex2oat is denied { search } on the DE data directory of priv-apps
+# (com.google.android.gms) while dexopting and falls back to a profile-less compile.
+# The denial cannot be granted: system/sepolicy/private/domain.te carries
+#   neverallow base_typeattr_498 privapp_data_file (dir (ioctl read write create
+#       getattr setattr lock ... open ...))
+# so any dir permission, getattr included, trips the neverallow check. The file is
+# kept (comment only) so the sepolicy directory glob stays unchanged and Soong does
+# not re-run its full analysis for a deletion.
