@@ -514,6 +514,12 @@ PRODUCT_PACKAGES += messaging
 $(call soong_config_set,samsungUdfpsVars,udfps_zorder,0x20000000u)
 $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/samsung/fingerprint:libudfps_extension.samsung)
 
+# The UDFPS sensor sub-HAL registers org.lineageos.sensor.udfps, the sensor
+# DozeSensors arms while the panel is off. The stock hals.conf did not load it.
+PRODUCT_PACKAGES += sensors.samsung
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
+
 # Inherit proprietary blobs
 $(call inherit-product, vendor/samsung/sm7225-common/sm7225-common-vendor.mk)
 
